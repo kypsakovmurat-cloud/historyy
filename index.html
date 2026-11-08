@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Қазақстан Тарихы - Лекция + Презентация</title>
+<style>
+:root{--gold:#FFD700;--green:#00A651;--blue:#0072CE;--dark:#0f172a;--card:#1e293b}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;scroll-behavior:smooth}
+body{background:var(--dark);color:#fff;line-height:1.8}
+header{background:linear-gradient(120deg,#00A651,#0072CE,#00A651,#FFD700);background-size:300% 300%;animation:gm 10s ease infinite;padding:90px 20px 70px;text-align:center}
+@keyframes gm{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+header h1{font-size:46px;text-shadow:0 4px 20px rgba(0,0,0,.4)} header p{font-size:18px;max-width:800px;margin:15px auto 25px}
+.btn-main{background:var(--gold);color:#111;border:none;padding:15px 30px;border-radius:50px;font-size:17px;font-weight:800;cursor:pointer}
+.search{width:100%;max-width:620px;padding:15px 20px;border-radius:50px;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-size:16px;margin-top:25px;outline:none}
+.search::placeholder{color:rgba(255,255,255,.8)}
+nav{background:#1e293b;position:sticky;top:0;z-index:100;display:flex;justify-content:center;overflow-x:auto;white-space:nowrap}
+nav a{padding:16px 14px;font-weight:700;font-size:14px;color:#fff;text-decoration:none}
+nav a:hover{color:var(--gold)}
+.container{max-width:1050px;margin:auto;padding:30px 20px}
+h2{color:var(--gold);margin:60px 0 20px;font-size:32px;border-left:6px solid var(--green);padding-left:14px}
+h3{color:#38bdf8;margin:20px 0 10px}
+.card{background:var(--card);border-radius:20px;padding:26px;margin-bottom:18px;border:1px solid #334155}
+.card b{color:var(--gold)}
+.card img{width:100%;height:230px;object-fit:cover;border-radius:14px;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.person{background:linear-gradient(135deg,#0ea5e9,#0072CE);border-radius:16px;padding:20px}
+.fact{background:linear-gradient(135deg,#FFD700,#FFA500);color:#111;border-radius:16px;padding:20px;font-weight:700}
+.quiz-opt{display:block;width:100%;text-align:left;background:#334155;color:#fff;border:none;padding:13px 18px;border-radius:12px;margin:8px 0;font-size:16px;cursor:pointer}
+.lec-btn{background:#00A651;color:#fff;border:none;padding:12px 22px;border-radius:50px;font-weight:800;margin:8px 8px 0 0;cursor:pointer;font-size:15px}
+.lec-btn2{background:#FFD700;color:#111;border:none;padding:12px 22px;border-radius:50px;font-weight:800;cursor:pointer;font-size:15px}
+.lec-box{display:none;background:#020617;border:1px solid var(--gold);border-radius:18px;padding:26px;margin-top:15px}
+.lec-box.open{display:block}
+.lec-box img{width:100%;height:240px;object-fit:cover;border-radius:14px;margin:10px 0 15px}
+.lec-box p{margin-bottom:12px}
+.lec-box h4{color:var(--gold);margin:18px 0 8px;font-size:19px}
+footer{text-align:center;padding:45px 20px;opacity:.7;background:#020617;margin-top:50px}
+.present{position:fixed;inset:0;background:#000;z-index:9999;display:none;flex-direction:column}
+.present.open{display:flex}
+.present-top{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:rgba(0,0,0,.6)}
+.present-top b{color:var(--gold)}
+.present-top button{background:#fff;color:#111;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer}
+.present-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;overflow-y:auto}
+.present-body img{width:100%;max-width:820px;height:340px;object-fit:cover;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+.present-body h2{font-size:34px;margin:18px 0 10px;border:none;padding:0}
+.present-body p{font-size:18px;max-width:820px;opacity:.95;line-height:1.7}
+.present-bottom{display:flex;justify-content:center;gap:12px;padding:18px;background:rgba(0,0,0,.6);flex-wrap:wrap;align-items:center}
+.present-bottom button{background:var(--gold);border:none;padding:13px 26px;border-radius:50px;font-weight:800;cursor:pointer;font-size:16px}
+.present-bottom button:nth-child(2){background:#fff}
+@media(max-width:700px){header h1{font-size:32px}.present-body img{height:220px}.present-body h2{font-size:25px}.present-body p{font-size:16px}nav{justify-content:flex-start}.card img{height:180px}}
+</style>
+</head>
+<body>
+<header><h1>🇰🇿 ҚАЗАҚСТАН ТАРИХЫ</h1><p>Толық лекция + Әдемі презентация + Тест</p><button class="btn-main" onclick="document.getElementById('dauir').scrollIntoView({behavior:'smooth'})">Саяхатты бастау →</button><br><input class="search" id="search" placeholder="🔍 Іздеу... мысалы: Абылай, Алтын адам" onkeyup="searchHistory()"></header>
+<nav><a href="#dauir">Ежелгі дәуір</a><a href="#saktar">Сақтар</a><a href="#turik">Түріктер</a><a href="#mongol">Моңғолдар</a><a href="#khanate">Хандық</a><a href="#resei">Ресей</a><a href="#kenes">Кеңес</a><a href="#tauelsiz">Тәуелсіздік</a><a href="#mad">Мәдениет</a><a href="#quiz">Тест</a></nav>
+<div class="container" id="content">
+
+<h2 id="dauir">🪨 1. Ежелгі дәуір</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80"><b>Қысқаша:</b> 1 млн жыл бұрын алғашқы адамдар келді. Ботайда жылқы қолға үйретілді.</div>
+<button class="lec-btn" onclick="toggleLec('lec1')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s1')">🎞️ Презентация</button>
+<div class="lec-box" id="lec1"><h3>Лекция 1: Ежелгі дәуір</h3><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80"><h4>1. Кіріспе</h4><p>Қазақстан жері — адамзат тарихындағы ең көне мекендердің бірі. Қаратау, Маңғыстау, Сарыарқадан табылған тас құралдар 1 миллион жыл бұрынғы адамдардың осында өмір сүргенін дәлелдейді.</p><h4>2. Палеолит</h4><p>Алғашқы адамдар аң аулап, үңгірде тұрды. Отты қолдануды үйренді.</p><h4>3. Ботай — Жылқы!</h4><p>5500 жыл бұрын Ботайда адамдар әлемде бірінші рет жылқыны қолға үйретті. Атқа міну арқылы алыс жерге тез жете бастады, көшпелі өмір, сауда, соғыс өнері дамыды.</p><h4>4. Қола және Темір дәуірі</h4><p>Қоладан балта, найза жасалды. Арба ойлап табылды. Темірден қылыш, сауыт жасалды. Көшпелі мал шаруашылығы гүлденді.</p><p><b>Қорытынды:</b> Қазақстан — жылқы мәдениетінің отаны.</p></div>
+
+<h2 id="saktar">🏹 2. Сақтар, Үйсіндер, Ғұндар</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=900&q=80"><b>Қысқаша:</b> Сақтар — алғашқы мемлекет. Томирис Кирді жеңді. Алтын адам Есіктен табылды.</div>
+<button class="lec-btn" onclick="toggleLec('lec2')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s2')">🎞️ Презентация</button>
+<div class="lec-box" id="lec2"><h3>Лекция 2: Сақтар — батырлар елі</h3><img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=900&q=80"><h4>1. Сақтар кім?</h4><p>Сақтар б.з.д. VII-III ғасырларда өмір сүрген. Геродот оларды «Азияның ең батыл жауынгерлері» деп жазған.</p><h4>2. Томирис</h4><p>Патшайым Томирис парсы патшасы Кирді жеңді. Бұл оқиға бүкіл әлем тарихына кірді.</p><h4>3. Алтын адам</h4><p>1969 жылы Есік қорғанынан 18 жастағы сақ ханзадасы табылды. Киімінде 4000+ алтын әшекей болды. «Алтын адам» — қазір Қазақстанның символы.</p><h4>4. Ғұндар</h4><p>Мөде шаньюй империя құрды. Аттила — «Құдайдың қамшысы».</p></div>
+
+<h2 id="turik">🐺 3. Түрік қағанаттары</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=900&q=80"><b>Қысқаша:</b> 552 ж. Түрік қағанаты құрылды. Жібек жолы гүлденді.</div>
+<button class="lec-btn" onclick="toggleLec('lec3')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s3')">🎞️ Презентация</button>
+<div class="lec-box" id="lec3"><h3>Лекция 3: Түрік дәуірі</h3><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=900&q=80"><h4>1. Түрік қағанаты (552-603)</h4><p>Бумын қаған құрды. Аумағы Кореядан Қырымға дейін созылды. Орхон жазбалары жазылды.</p><h4>2. Түргеш</h4><p>Сулу қаған арабтарға қарсы соғысты.</p><h4>3. Қарахандар</h4><p>Алғашқы мұсылман түрік мемлекеті. «Құтты білік» жазылды.</p><h4>4. Қыпшақтар және Жібек жолы</h4><p>Қыпшақ тілі — қазақ тілінің негізі. Тараз, Отырар — Жібек жолының орталықтары.</p></div>
+
+<h2 id="mongol">🐴 4. Моңғолдар және Алтын Орда</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=900&q=80"><b>Қысқаша:</b> 1219 ж. Отырар апаты. 1243 ж. Алтын Орда құрылды.</div>
+<button class="lec-btn" onclick="toggleLec('lec4')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s4')">🎞️ Презентация</button>
+<div class="lec-box" id="lec4"><h3>Лекция 4: Моңғол шапқыншылығы</h3><img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=900&q=80"><h4>1. Отырар апаты (1219)</h4><p>Отырар 6 ай қоршауда болды. Қала батырлықпен қорғанды, бірақ құлады.</p><h4>2. Жошы ұлысы</h4><p>Қазақстан жері Жошыға берілді. Оның ұлы Батый Алтын Орданы құрды.</p><h4>3. Алтын Орда</h4><p>Астанасы Сарай-Бату. Осы кезде қазақ халқы қалыптаса бастады.</p></div>
+
+<h2 id="khanate">👑 5. Қазақ хандығы (1465-1847)</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80"><b>Қысқаша:</b> 1465 ж. Керей мен Жәнібек Қазақ хандығын құрды.</div>
+<div class="grid" style="margin-top:15px"><div class="person"><h4>Керей мен Жәнібек</h4>Негізін қалаушылар</div><div class="person"><h4>Қасым хан</h4>Қасқа жолы</div><div class="person"><h4>Тәуке хан</h4>Жеті Жарғы</div><div class="person"><h4>Абылай хан</h4>Жоңғарларды жеңді</div><div class="person"><h4>Кенесары хан</h4>Соңғы хан</div></div><br>
+<button class="lec-btn" onclick="toggleLec('lec5')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s5')">🎞️ Презентация</button>
+<div class="lec-box" id="lec5"><h3>Лекция 5: Қазақ хандығы — ЕРКІНДІК тарихы</h3><img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80"><h4>1. Құрылуы (1465)</h4><p>Керей мен Жәнібек Жетісуға көшті. 200 000 адам еріп келді. «Қазақ» — еркін адам.</p><h4>2. Қасым хан</h4><p>«Қасым ханның қасқа жолы» — алғашқы заңдар.</p><h4>3. Тәуке хан</h4><p>«Жеті Жарғы» — 7 заң. Төле, Қазыбек, Әйтеке билер көмектесті.</p><h4>4. Ақтабан шұбырынды және Аңырақай</h4><p>1723-1727 ж. Жоңғар шапқыншылығы. Халықтың 1/3 қырылды. 1729 ж. Аңырақайда қазақтар жеңді.</p><h4>5. Абылай және Кенесары</h4><p>Абылай — ұлы қолбасшы, дипломат. Кенесары — соңғы хан, 10 жыл күресті.</p></div>
+
+<h2 id="resei">🏛️ 6. Ресей кезеңі</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?w=900&q=80"><b>Қысқаша:</b> 1731 ж. Кіші жүз Ресейге қосылды. Кенесары көтерілісі 10 жылға созылды.</div>
+<button class="lec-btn" onclick="toggleLec('lec6')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s6')">🎞️ Презентация</button>
+<div class="lec-box" id="lec6"><h3>Лекция 6: Ресей кезеңі</h3><img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?w=900&q=80"><h4>1. 1731 жыл</h4><p>Әбілқайыр хан Ресеймен одақ жасады. Кейін бұл отарлауға айналды.</p><h4>2. Кенесары</h4><p>1837-1847 ж. Ең ірі көтеріліс. 10 жыл соғысты.</p><h4>3. Исатай мен Махамбет</h4><p>Махамбет — ақын, батыр. «Ереуіл атқа ер салып...»</p><h4>4. 1916 жыл</h4><p>Амангелді Иманов бастаған көтеріліс.</p></div>
+
+<h2 id="kenes">⭐ 7. Кеңес дәуірі</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80"><b>Қысқаша:</b> Алаш Орда, Ашаршылық, Қуғын-сүргін, Соғыс, Байқоңыр, Желтоқсан.</div>
+<button class="lec-btn" onclick="toggleLec('lec7')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s7')">🎞️ Презентация</button>
+<div class="lec-box" id="lec7"><h3>Лекция 7: Кеңес дәуірі — ең ауыр кезең</h3><img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80"><h4>1. Алаш Орда</h4><p>Әлихан Бөкейханов бастады. Қазақ автономиясын құрғысы келді.</p><h4>2. Ашаршылық</h4><p>1930-1933 ж. 2,3 млн адам аштан өлді — халықтың 49%-ы.</p><h4>3. Қуғын-сүргін</h4><p>1937-1938 ж. Ахмет Байтұрсынұлы, Міржақып Дулатов атылды.</p><h4>4. Соғыс, Семей, Байқоңыр, Желтоқсан</h4><p>28 панфиловшы, Мәншүк, Әлия. Семейде 456 ядролық жарылыс. 1961 ж. Гагарин ұшты. 1986 ж. Желтоқсан — Тәуелсіздіктің бастауы.</p></div>
+
+<h2 id="tauelsiz">🇰🇿 8. Тәуелсіз Қазақстан</h2>
+<div class="card"><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=80"><b>Қысқаша:</b> 16 желтоқсан 1991 — Тәуелсіздік! 1993 — Теңге. 1997 — Астана.</div>
+<button class="lec-btn" onclick="toggleLec('lec8')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s8')">🎞️ Презентация</button>
+<div class="lec-box" id="lec8"><h3>Лекция 8: Тәуелсіздік</h3><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=80"><h4>1. 16 желтоқсан 1991</h4><p>Қазақстан Тәуелсіздігін жариялады. Тұңғыш Президент — Нұрсұлтан Назарбаев.</p><h4>2. Теңге және Астана</h4><p>1993 ж. теңге енгізілді. 1997 ж. астана Ақмолаға көшірілді.</p><h4>3. EXPO және Жаңа Қазақстан</h4><p>2017 ж. EXPO-2017 өтті. 2022 ж. Жаңа Қазақстан реформалары басталды.</p></div>
+
+<h2 id="mad">🎭 9. Мәдениет</h2>
+<div class="grid"><div class="card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"><b>🏕️ Киіз үй</b><br>1 сағатта жиналады.</div><div class="card"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80"><b>🎵 Домбыра</b><br>Құрманғазы, Дина.</div><div class="card"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80"><b>🌸 Наурыз</b><br>22 наурыз.</div><div class="card"><img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=600&q=80"><b>🐎 Көкпар</b><br>Көшпенділер ойыны.</div></div><br>
+<button class="lec-btn" onclick="toggleLec('lec9')">📖 Толық лекцияны оқу</button><button class="lec-btn2" onclick="openPresent('s9')">🎞️ Презентация</button>
+<div class="lec-box" id="lec9"><h3>Лекция 9: Мәдениет</h3><h4>Киіз үй</h4><p>Шаңырақ — бірлік символы. Қазақстан туында да бар.</p><h4>Домбыра</h4><p>1 шілде — Домбыра күні. Құрманғазының күйлері әлемге танымал.</p><h4>Наурыз</h4><p>22 наурыз — жыл басы. Наурыз көже 7 тағамнан жасалады.</p><h4>Салт-дәстүр</h4><p>Тұсаукесер, Беташар, Қыз ұзату. «Қонақ келсе, құт келеді».</p></div>
+
+<h2>💡 Қызықты фактілер</h2>
+<div class="grid"><div class="fact">🐎 Жылқыны алғаш қолға үйреткен - Қазақстан (Ботай)</div><div class="fact">🍎 Алманың отаны - Алматы. Апорт - ең үлкен алма</div><div class="fact">🌍 9-орын әлемде - 2 724 900 км²</div><div class="fact">🚀 Байқоңыр - ең үлкен ғарыш айлағы</div></div>
+
+<h2 id="quiz">🧠 Тест</h2>
+<div class="card"><p><b>1. Қазақ хандығы қай жылы құрылды?</b></p><button class="quiz-opt" onclick="check(this,true,'r1')">1465</button><button class="quiz-opt" onclick="check(this,false,'r1')">1565</button><button class="quiz-opt" onclick="check(this,false,'r1')">1723</button><p id="r1"></p><p style="margin-top:20px"><b>2. «Алтын адам» қай жерден табылды?</b></p><button class="quiz-opt" onclick="check(this,true,'r2')">Есік қорғанынан</button><button class="quiz-opt" onclick="check(this,false,'r2')">Отырардан</button><button class="quiz-opt" onclick="check(this,false,'r2')">Тараздан</button><p id="r2"></p><p style="margin-top:20px"><b>3. Тәуелсіздік күні қашан?</b></p><button class="quiz-opt" onclick="check(this,true,'r3')">16 желтоқсан 1991</button><button class="quiz-opt" onclick="check(this,false,'r3')">22 наурыз 1991</button><button class="quiz-opt" onclick="check(this,false,'r3')">1 мамыр 1992</button><p id="r3"></p></div>
+</div>
+<footer>Қазақстан тарихы • Толық Лекция + Презентация • 2026 🇰🇿</footer>
+
+<div class="present" id="present">
+<div class="present-top"><b id="p-title">Презентация</b><button onclick="closePresent()">Жабу ✕</button></div>
+<div class="present-body"><img id="p-img" src=""><h2 id="p-h">...</h2><p id="p-p">...</p></div>
+<div class="present-bottom"><button onclick="prevP()">⬅ Алдыңғы</button><span id="p-count" style="color:#fff;font-weight:800;padding:13px"></span><button onclick="nextP()">Келесі ➡</button></div>
+</div>
+
+<script>
+const DATA={
+s1:{title:"🪨 Ежелгі дәуір - Презентация",slides:[
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Ежелгі дәуір — бастамасы","Қазақстан жерінде адамдар 1 миллион жыл бұрын пайда болды. Қаратау, Маңғыстау, Сарыарқадан табылған тас құралдар — соның дәлелі. Алғашқы адамдар аң аулап, үңгірде тұрды, отты қолдануды үйренді. Олар топтасып өмір сүрді, бір-біріне көмектесті. Осылайша адамзат тарихы басталды."],
+["https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=900&q=80","Ботай — Жылқының отаны","5500 жыл бұрын Солтүстік Қазақстандағы Ботай қонысында адамдар әлемде бірінші рет жылқыны қолға үйретті. Бұл — адамзат тарихындағы ең ұлы жаңалықтардың бірі. Атқа міну арқылы адамдар алыс жерге тез жете бастады. Көшпелі өмір, сауда, соғыс өнері дамыды. Бүгінгі әлемдегі барлық жылқы мәдениеті осы Ботайдан басталған."],
+["https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=900&q=80","Қола және Темір дәуірі","Қола дәуірінде Андрон мәдениеті гүлденді. Қоладан балта, найза, пышақ жасалды. Екі дөңгелекті арба ойлап табылды — бұл арба кейін бүкіл Еуразияға таралды. Темір дәуірінде темірден қылыш, сауыт жасалды. Көшпелі мал шаруашылығы дамып, киіз үй пайда болды. Алғашқы тайпалық одақтар құрылды."],
+["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80","Қорытынды","Ежелгі дәуір — қазақ халқының негізі қаланған кезең. Қазақстан — жылқының, арбаның, көшпелі мәдениеттің отаны. Осы кезеңде адамдар табиғатпен бірге өмір сүруді, бір-біріне көмектесуді үйренді. Бұл дәстүрлер бүгінгі қазақ халқына да мұра болып қалды."]]},
+s2:{title:"🏹 Сақтар - Презентация",slides:[
+["https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=900&q=80","Сақтар — батырлар елі","Сақтар б.з.д. VII-III ғасырларда Қазақстан жерінде өмір сүрген. Геродот оларды «Азияның ең батыл жауынгерлері» деп жазған. Олар 3 топқа бөлінді: тиграхауда, хаумаварга, парадарайя. Сақтар атқа мінудің, садақ атудың шебері болды. Олардың алтыннан жасалған әшекейлері, қарулары бүгінге дейін сақталған."],
+["https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80","Томирис — ұлы патшайым","Патшайым Томирис парсы патшасы Кирдің әскерін жеңді. Кир — сол кездегі әлемдегі ең күшті патша еді. Бірақ Томирис айламен, батылдықпен, халықтың бірлігімен жеңіске жетті. Бұл оқиға бүкіл әлем тарихына кірді. Томирис — әйелдердің де ұлы қолбасшы бола алатынын дәлелдеген тұлға."],
+["https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=900&q=80","Алтын адам — Қазақстан символы","1969 жылы Есік қорғанынан 18 жастағы сақ ханзадасының мүрдесі табылды. Оның киімінде 4000-нан астам алтын әшекей болды! Басындағы тәж, алтын белбеу, қылыш — бәрі таза алтыннан жасалған. «Алтын адам» — қазір Қазақстанның символы. Астанада оның ескерткіші тұр, ол еркіндік пен байлықтың белгісі."],
+["https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=900&q=80","Ғұндар және Үйсіндер","Үйсіндер Жетісуда өмір сүрді, астанасы — Қызыл Аңғар. Қаңлылар Сырдария бойында тұрды. Отырар, Тараз қалаларының негізі осы кезде қаланды. Ғұндар: Мөде шаньюй империя құрды. Аттила — «Құдайдың қамшысы» атанған қолбасшы. Оның әскері Еуропаға дейін жетті."]]},
+s3:{title:"🐺 Түріктер - Презентация",slides:[
+["https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=900&q=80","Түрік қағанаты — Ұлы империя","552 жылы Бумын қаған Түрік қағанатын құрды. Оның аумағы Кореядан Қырымға дейін созылды — сол кездегі әлемдегі ең үлкен мемлекеттердің бірі. Түріктер өз жазуын жасады — Орхон жазбалары. «Күлтегін» жырлары осы кезде жазылды. Түрік қағанаты — түркі халықтарының алғашқы ұлы империясы."],
+["https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80","Қарахандар — ислам дәуірі","840-1212 жылдары Қарахандар мемлекеті — алғашқы мұсылман түрік мемлекеті болды. Баласағұнда Жүсіп Баласағұн «Құтты білік» дастанын жазды — бұл түркі халықтарының алғашқы әдеби шығармасы. Мешіттер, медреселер салынды. Ғылым, мәдениет дамыды. Түркістан, Тараз — ғылым орталықтарына айналды."],
+["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&q=80","Жібек жолы — әлемдік көпір","Тараз, Отырар, Түркістан, Сауран — Жібек жолының бойындағы әлемдік сауда орталықтары болды. Қытайдан жібек, Үндістаннан дәмдеуіш, Еуропадан шыны әкелінді. Қазақстан — Шығыс пен Батысты байланыстырған көпір болды. Сауда арқылы мәдениеттер, діндер, ғылым да алмасты."],
+["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80","Қыпшақтар — қазақ тілінің негізі","XI-XIII ғасырларда Қыпшақтар Дешті Қыпшақ даласын биледі. Қыпшақ тілі — қазіргі қазақ тілінің негізі. «Кодекс Куманикус» — қыпшақ тілінің сөздігі осы кезде жазылды. Қыпшақтардың батырлық жырлары, аңыздары бүгінгі қазақ фольклорының негізі болды."]]},
+s4:{title:"🐴 Моңғолдар - Презентация",slides:[
+["https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=900&q=80","Отырар апаты — 1219 жыл","Отырар әміршісі Қайыр хан Шыңғыс ханның керуенін тонап, саудагерлерін өлтірді. Шыңғыс хан үлкен әскермен келді. Отырар 6 ай қоршауда болды. Қала батырлықпен қорғанды, бірақ ақыры құлады. Бұл — Қазақстан тарихындағы ең қайғылы оқиғалардың бірі. Отырар кітапханасы өртеніп кетті."],
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Жошы ұлысы — жаңа дәуір","Шыңғыс хан қайтыс болған соң, Қазақстан жері оның үлкен ұлы Жошыға берілді. Жошының ұлы Батый Алтын Орда мемлекетін құрды. Моңғолдар жергілікті халықпен араласып кетті. Түрік тілі, ислам діні сақталды. Осылайша жаңа халық қалыптаса бастады."],
+["https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80","Алтын Орда — 1243-1502","Астанасы — Сарай-Бату. Алтын Орда — үлкен, күшті мемлекет болды. Сауда дамыды, қалалар салынды. Осы кезде Қазақстан жерінде әртүрлі тайпалар бірігіп, қазақ халқы қалыптаса бастады. Қыпшақ, арғын, найман, дулат тайпалары бір халыққа айналды. Бұл — қазақ халқының қалыптасуының бастауы."]]},
+s5:{title:"👑 Қазақ хандығы - Презентация",slides:[
+["https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80","1465 жыл — Хандықтың құрылуы","Керей мен Жәнібек сұлтандар Әбілқайыр ханның озбырлығына шыдамай, Жетісуға көшіп кетті. Оларға 200 000 адам еріп келді! Осылайша 1465 жылы Қазақ хандығы құрылды. «Қазақ» сөзі — «еркін, азат адам» деген мағынаны білдіреді. Бұл — қазақ халқының мемлекеттілігінің бастауы."],
+["https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80","Қасым хан және Тәуке хан","Қасым хан кезінде хандық күшейді. Халық саны 1 миллионға жетті. Ол «Қасым ханның қасқа жолы» — алғашқы заңдар жинағын жасады. Тәуке хан «Жеті Жарғы» — 7 заңды қабылдады. Оған Төле би, Қазыбек би, Әйтеке би көмектесті. Бұл заңдар 300 жыл бойы қолданылды."],
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Ақтабан шұбырынды және Аңырақай","1723-1727 жылдары Жоңғарлар кенеттен шабуыл жасады. Халықтың 1/3 қырылды. Адамдар босқын болып, табанынан тозып қашты. Бұл — «Ақтабан шұбырынды» деп аталды. Бірақ 1729 жылы Аңырақай жерінде қазақтар бірігіп, жоңғарларды талқандады. Бөгенбай, Қабанбай батырлар ерлік көрсетті."],
+["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80","Абылай хан — ұлы қолбасшы","Абылай хан — ұлы қолбасшы және дипломат. Ол Ресеймен де, Қытаймен де тең сөйлесті. Жоңғарларды біржола жеңді. Халық оны «Абылай» деп сүйіп атады. Ол хандықтың бірлігін сақтап, елді қорғады. Абылай — қазақ халқының ең сүйікті хандарының бірі."],
+["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&q=80","Кенесары — соңғы хан","Кенесары — соңғы қазақ ханы. Ол тәуелсіздік үшін 10 жыл күресті. Оның көтерілісі — қазақ халқының ең ірі ұлт-азаттық күресі. Кенесары бүкіл үш жүзді біріктіруге тырысты. Ол — еркіндік үшін күрескен батырдың символы."]]},
+s6:{title:"🏛️ Ресей кезеңі - Презентация",slides:[
+["https://images.unsplash.com/photo-1513326738677-b964603b136d?w=900&q=80","1731 жыл — одақ па, отарлау ма?","Әбілқайыр хан жоңғарларға қарсы көмек алу үшін Ресеймен одақ жасады. Алғашында бұл тең одақ болды. Бірақ кейін Ресей қазақ жерін біртіндеп өзіне қосып ала бастады. Бекіністер салынды, орыс шаруалары көшіп келді, қазақтардың жері тарылды. Қазақтар өз жерінен айырыла бастады."],
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Кенесары көтерілісі — 10 жылдық күрес","1837-1847 жылдары Кенесары хан Ресейдің отарлау саясатына қарсы шықты. 10 жыл бойы соғысты. Оған бүкіл үш жүз қолдау көрсетті. Бұл — ең ірі көтеріліс болды. Кенесары хандықты қалпына келтіруді, жерді қайтаруды талап етті."],
+["https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80","Исатай мен Махамбет","Батыс Қазақстанда Исатай Тайманұлы мен Махамбет Өтемісұлы көтеріліс көтерді. Махамбет — ақын әрі батыр. Оның өлеңдері бүгінге дейін халықтың рухын көтереді: «Ереуіл атқа ер салып, егеулі найза қолға алып...» Махамбет — еркіндік пен әділеттілік үшін күрескен батыр."],
+["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80","1916 жылғы көтеріліс","1916 жылы патша қазақтарды тыл жұмысына алу туралы жарлық шығарды. Халық көтерілді. Амангелді Иманов бастаған көтеріліс Торғайда болды. Бұл көтеріліс — халықтың шыдамы таусылғанын көрсетті. Көп ұзамай Ресей империясы құлады."]]},
+s7:{title:"⭐ Кеңес дәуірі - Презентация",slides:[
+["https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80","Алаш Орда — 1917-1920","Әлихан Бөкейханов бастаған Алаш зиялылары қазақ автономиясын құрғысы келді. Ахмет Байтұрсынұлы, Міржақып Дулатов, Мағжан Жұмабаев — бәрі Алаш үшін жұмыс істеді. Олар қазақ мектептерін, газеттерін ашты. «Қазақ» газеті — тұңғыш қазақ газеті. Алаш — қазақ халқының оянуы болды."],
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Ашаршылық — 1930-1933","Кеңес үкіметі малды күштеп жинап алды. Көшпелі халық малынан айырылды. 2,3 миллион адам аштан өлді — халықтың 49%-ы! Бұл — қазақ халқының ең үлкен қасіреті. Қазір бұл оқиғаны тарихшылар геноцид деп атайды. Халық бұл қасіретті ешқашан ұмытпайды."],
+["https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80","Қуғын-сүргін — 1937-1938","1937-1938 жылдары Алаш зиялыларының бәрі атылды: Ахмет Байтұрсынұлы, Міржақып Дулатов, Мағжан Жұмабаев, Жүсіпбек Аймауытов... Қазақстанның ең білімді, ең ақылды адамдарынан айырылды. Бұл — ұлттың миын жою болды. Бірақ олардың идеялары өлген жоқ."],
+["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80","Соғыс — 1941-1945","Екінші дүниежүзілік соғыста қазақстандықтар ерлік көрсетті: 28 панфиловшы, Мәншүк Мәметова, Әлия Молдағұлова, Талғат Бигелдинов — Кеңес Одағының Батырлары. Қазақстан майданды азық-түлікпен, киіммен қамтамасыз етті. Әрбір отбасы соғысты сезінді."],
+["https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80","Семей, Байқоңыр, Желтоқсан","1949 жылы Семейде ядролық полигон ашылды. 40 жылда 456 ядролық жарылыс жасалды. 1,5 миллион адам зардап шекті. 1961 жылы Байқоңырдан Юрий Гагарин ғарышқа ұшты — адамзат тарихында тұңғыш рет! 1986 жылы Желтоқсанда Алматы жастары көтерілді — бұл Тәуелсіздіктің бастауы болды."]]},
+s8:{title:"🇰🇿 Тәуелсіздік - Презентация",slides:[
+["https://images.unsplash.com/photo-1559599101-f09722fb4948?w=900&q=80","16 желтоқсан 1991 — Тәуелсіздік!","Осы күні Қазақстан өз Тәуелсіздігін жариялады! Тұңғыш Президент — Нұрсұлтан Назарбаев болды. Халық қуаныштан көшеге шықты. Енді қазақ халқы өз тағдырын өзі шешетін болды. Бұл — 300 жылдық арманның орындалуы. Тәуелсіздік — ең үлкен байлық."],
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Теңге және Астана","1993 жылы 15 қарашада ұлттық валюта — теңге енгізілді. Бұл — экономикалық тәуелсіздіктің белгісі болды. 1997 жылы астана Алматыдан Ақмолаға көшірілді. Жаңа астана — Астана деп аталды. Қазір Астана — әлемдегі ең әдемі, ең заманауи қалалардың бірі. Бәйтерек, Хан Шатыр, Ақорда — бәрі осында."],
+["https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80","EXPO-2017 — әлем Қазақстанды таныды","2017 жылы Астанада EXPO-2017 халықаралық көрмесі өтті. Тақырыбы — «Болашақ энергиясы». 4 миллион адам келді. 115 ел қатысты. Қазақстан әлемге өзінің заманауи, ашық, қонақжай ел екенін көрсетті. Бұл — Қазақстанның халықаралық беделін көтерді."],
+["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&q=80","Жаңа Қазақстан — бүгін және ертең","2022 жылдан бастап Жаңа Қазақстан реформалары басталды. Президенттік мерзім — 7 жыл, бір рет. Жаңа саяси жүйе, әділетті қоғам құрылып жатыр. Бүгін Қазақстан — Орталық Азиядағы ең ірі экономика, бейбітшілік пен келісімнің үлгісі. Біз — тәуелсіз елдің ұрпақтарымыз! Болашақ біздің қолымызда!"]]},
+s9:{title:"🎭 Мәдениет - Презентация",slides:[
+["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80","Киіз үй — көшпенділер даналығы","Киіз үй — көшпенділердің даналығы. Ол 1 сағатта жиналады, 1 сағатта тігіледі. Шаңырақ — отбасы мен бірліктің символы. Ол Қазақстанның туында да бар. Киіз үй — табиғатпен үйлесімді өмірдің үлгісі. Ыстық жазда салқын, суық қыста жылы."],
+["https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900&q=80","Домбыра — даланың үні","Домбыра — 2 ішекті аспап, бірақ оның үні — бүкіл даланың үні. Құрманғазының «Сарыарқа», «Адай» күйлері әлемге танымал. Дина Нұрпейісова — домбыраның патшайымы. 1 шілде — Домбыра күні. Домбыра — қазақ халқының жаны, рухы."],
+["https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=900&q=80","Наурыз — жыл басы","22 наурыз — жыл басы, көктем мерекесі. Наурыз көже 7 түрлі тағамнан жасалады: ет, су, тұз, ұн, сүт, тары, құрт. Әркім Наурыз көжеден дәм татуы керек — сонда жыл мол болады. Наурыз — табиғаттың оянуы, жаңа өмірдің бастауы."],
+["https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=900&q=80","Салт-дәстүр және тағамдар","Тұсаукесер — баланың алғашқы қадамы. Бесік той, Беташар, Қыз ұзату, Сүндет той — бәрі қазақ халқының бай мәдениеті. Қонақжайлылық — қазақтың басты қасиеті: «Қонақ келсе, құт келеді». Бешбармақ, қазы-қарта, қымыз, шұбат, бауырсақ — қазақтың ұлттық тағамдары."]]}
+};
+let curKey='',curIdx=0;
+function toggleLec(id){document.getElementById(id).classList.toggle('open');}
+function openPresent(key){curKey=key;curIdx=0;document.getElementById('present').classList.add('open');showP();}
+function closePresent(){document.getElementById('present').classList.remove('open');}
+function showP(){let d=DATA[curKey];let s=d.slides[curIdx];document.getElementById('p-title').innerText=d.title;document.getElementById('p-img').src=s[0];document.getElementById('p-h').innerText=s[1];document.getElementById('p-p').innerText=s[2];document.getElementById('p-count').innerText=(curIdx+1)+' / '+d.slides.length;}
+function nextP(){curIdx=(curIdx+1)%DATA[curKey].slides.length;showP();}
+function prevP(){curIdx=(curIdx-1+DATA[curKey].slides.length)%DATA[curKey].slides.length;showP();}
+function searchHistory(){let v=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.card, .person, .fact').forEach(c=>{c.style.display=c.textContent.toLowerCase().includes(v)?'':'none';});}
+function check(b,ok,id){document.getElementById(id).innerHTML=ok?'✅ Дұрыс!':'❌ Қате, тағы көр!';}
+document.addEventListener('keydown',e=>{if(document.getElementById('present').classList.contains('open')){if(e.key==='ArrowRight')nextP();if(e.key==='ArrowLeft')prevP();if(e.key==='Escape')closePresent();}});
+</script>
+</body>
+</html>
